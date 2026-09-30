@@ -71,23 +71,23 @@
 #define NL_SKY_RAIN_MIX_FACTOR 0.9
 
 /* Sky colors - zenith=top, horizon=bottom */
-#define NL_DAWN_ZENITH_COL   vec3(0.72, 0.34, 0.62)
-#define NL_DAWN_HORIZON_COL  vec3(1.55, 1.12, 0.48)
-#define NL_DAWN_EDGE_COL     vec3(1.75, 1.30, 0.68)
+#define NL_DAWN_ZENITH_COL   vec3(0.58,0.54,1.08)
+#define NL_DAWN_HORIZON_COL  vec3(3.60,1.55,1.20)
+#define NL_DAWN_EDGE_COL     vec3(2.90,1.38,1.16)
 
-#define NL_DAY_ZENITH_COL    vec3(0.18, 0.62, 1.20)
-#define NL_DAY_HORIZON_COL   vec3(0.72, 0.92, 1.12)
-#define NL_DAY_EDGE_COL      vec3(0.42, 0.76, 1.02)
+#define NL_DAY_ZENITH_COL    vec3(0.38,0.94,2.48)
+#define NL_DAY_HORIZON_COL   vec3(1.02,2.02,2.46)
+#define NL_DAY_EDGE_COL      vec3(1.50,1.80,2.02)
 
-#define NL_NIGHT_ZENITH_COL   vec3(0.018, 0.075, 0.15)
-#define NL_NIGHT_HORIZON_COL  vec3(0.020, 0.085, 0.17)
-#define NL_NIGHT_EDGE_COL     vec3(0.022, 0.095, 0.19)
+#define NL_NIGHT_ZENITH_COL  vec3(0.020,0.078,0.20)
+#define NL_NIGHT_HORIZON_COL vec3(0.045,0.112,0.23)
+#define NL_NIGHT_EDGE_COL    vec3(0.070,0.145,0.25)
 
-#define NL_RAIN_ZENITH_COL   vec3(0.22, 0.23, 0.25)
-#define NL_RAIN_HORIZON_COL  vec3(0.42, 0.43, 0.44)
+#define NL_RAIN_ZENITH_COL   vec3(0.25,0.25,0.3)
+#define NL_RAIN_HORIZON_COL  vec3(0.50,0.50,0.55)
 
-#define NL_END_ZENITH_COL   vec3(0.018, 0.012, 0.075)
-#define NL_END_HORIZON_COL  vec3(0.035, 0.025, 0.11)
+#define NL_END_ZENITH_COL    vec3(0.075,0.050,0.24)
+#define NL_END_HORIZON_COL   vec3(0.24,0.12,0.46)
 
 /* Rainbow */
 //#define NL_RAINBOW           // [toggle] enable rainbow in sky
@@ -124,7 +124,7 @@
 #define NL_UNDERWATER_TINT vec3(0.0,1.0,1.0) // fog tint color when underwater
 
 /* Cloud type */
-#define NL_CLOUD_TYPE 0 // 0:vanilla, 1:soft, 2:rounded, 3:realistic
+#define NL_CLOUD_TYPE 2 // 0:vanilla, 1:soft, 2:rounded, 3:realistic
 
 /* Vanilla cloud settings - make sure to remove clouds.png when using this */
 #define NL_CLOUD0_THICKNESS 2.1      // 0.5 slim ~ 8.0 fat
