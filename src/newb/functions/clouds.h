@@ -56,7 +56,6 @@ float lmiCloudDf(vec3 pos, float rain, float time, vec2 boxiness) {
   return n;
 }
 
-vec4 renderCloudsRounded(
 vec4 renderCloudsRounded(vec3 vDir, vec3 vPos, float rain, float time, vec3 horizonCol, vec3 zenithCol, const int steps, const float thickness, const float thickness_rain, const float speed, const vec2 scale, const float density, const vec2 boxiness) {
   float height = 7.0 * mix(thickness, thickness_rain, rain);
   float stepsf = float(steps);
