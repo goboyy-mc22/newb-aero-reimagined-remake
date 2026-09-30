@@ -89,4 +89,8 @@ float movingNoise2D(vec2 pos, float t, float f) {
   return mix(n0*n0, n1*n1, f);
 }
 
+float lmiCloudRand(highp vec2 n) {
+  return fract(sin(dot(n,vec2(12.9898,4.1414)))*52.543);
+}
+
 #endif
