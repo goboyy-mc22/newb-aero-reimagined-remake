@@ -10,7 +10,7 @@ vec3 glowDetect(vec4 diffuse) {
   if (diffuse.a > 0.988 && diffuse.a < 0.993) {
     vec3 glow = diffuse.rgb * diffuse.rgb;
     if (diffuse.a > 0.989) {
-      return 0.4 * glow;
+      return 0.5 * glow;
     }
     return glow;
   }
@@ -55,7 +55,7 @@ vec3 nlGlow(sampler2D tex, vec2 uv, float shimmer) {
 
     vec2 p = uv * texSize;
     vec2 u = fract(p);
-    //u *= u*(3.0 - 2.0*u);
+    u *= u*(3.0 - 2.0*u);
     vec2 v = 1.0 - u;
 
     // corners
