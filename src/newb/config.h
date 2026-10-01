@@ -1,32 +1,6 @@
 #ifndef NL_CONFIG_H
 #define NL_CONFIG_H
 
-/*
-  NEWB SHADER MAIN CONFIG
-  This part contains base configuration options for the shader.
-
-  TOGGLES
-  - If [toggle] is mentioned, then
-    options can be commented to disable (by adding '//')
-  - eg: #define PLANTS_WAVE    -> this is ON
-        //#define PLANTS_WAVE  -> this is OFF
-
-  COLOR VALUES
-  - Color format: vec3(red,green,blue)
-  - 1.0 means 100%, 0.0 means 0%
-  - eg: vec3(1.0,1.0,0.0) = yellow
-
-  VALUES
-  - Values must be decimal
-  - eg. 32 is wrong, 32.0 is correct
-
-  TYPES
-  - Should be integer. options to choose will be mentioned there
-  - eg: #define NL_CLOUD_TYPE 2
-
-  Remember to rebuild the shader after making changes.
-*/
-
 /* Color correction */
 #define NL_TONEMAP_TYPE 4              // 1:Exponential, 2:Reinhard, 3:Extended Reinhard, 4:ACES
 #define NL_GAMMA 1.15                  // 0.3 low ~ 2.0 high
@@ -88,6 +62,13 @@
 
 #define NL_END_ZENITH_COL    vec3(0.030,0.000,0.075)
 #define NL_END_HORIZON_COL   vec3(0.045,0.005,0.095)
+
+/* blackhole at the end */
+#define NL_BLACKHOLE                         // [toggle] enable blackhole in endsky
+#define NL_BH_COL_LOW vec3(0.0,0.0,0.0)      // hole color
+#define NL_BH_COL_HIGH vec3(0.2,0.2,0.3)   // spiral ring color
+#define NL_BH_DIST 2.0                      // blackhole size: 5.0 tiny - 0.5 massive
+#define NL_BH_SPEED 0.6                      // spiral rotation speed
 
 /* Rainbow */
 #define NL_RAINBOW           // [toggle] enable rainbow in sky
