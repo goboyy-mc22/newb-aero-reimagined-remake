@@ -106,9 +106,9 @@ void main() {
     // Textura procedural de espuma
     float foam = fract(238.084 * sin(dot(floor(16.0 * watpos), vec2(1.32, 141.3))));
     foam *= fade;
-    foam = mix(foam, 1.0, fade * fade * fade);
+    foam = mix(foam, 1.0, fade);
 
-    diffuse.rgb = mix(diffuse.rgb, vec3(1.0, 1.0, 1.3)*3.0, foam);
+    diffuse.rgb = mix(diffuse.rgb, vec3(1.0, 1.0, 1.0)*3.0, foam);
   }
 
   if (v_extra.b > 0.9) {
