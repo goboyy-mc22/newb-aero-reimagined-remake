@@ -31,7 +31,7 @@ void main() {
       #endif
 
       #ifdef NL_AURORA
-        color += renderAurora(cloudPos, v_color2.a, v_color1.a, v_dayFactor)*(1.0-0.95*color.a);
+        color += renderAurora(cloudPos, v_color2.a, v_color1.a, v_dayFactor)*(1.0-0.20*color.a);
       #endif
 
       color.a *= v_color0.a;
@@ -45,8 +45,8 @@ void main() {
       color = clouds;
 
       #ifdef NL_AURORA
-        p.xy *= 34.7;
-        color += renderAurora(p.xyy, v_color2.w, v_color1.w, v_dayFactor)*(1.0-0.95*color.a);
+        p.xy *= 21.7;
+        color += renderAurora(p.xyy, v_color2.w, v_color1.w, v_dayFactor)*(1.0-0.20*color.a);
       #endif
 
       color.a *= smoothstep(0.0, 0.7, vDir.y);
