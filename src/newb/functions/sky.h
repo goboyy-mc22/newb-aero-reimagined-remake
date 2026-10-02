@@ -45,13 +45,12 @@ nl_skycolor nlOverworldSkyColors(nl_environment env) {
   s.horizon = mix(NL_DAY_HORIZON_COL, NL_NIGHT_HORIZON_COL*f, nightFactor);
   s.horizonEdge = mix(NL_DAY_EDGE_COL, NL_NIGHT_EDGE_COL*f, nightFactor);
 
-  float dawnFactor = 1.0-smoothstep(0.0,1.0,abs(env.dayFactor));
-  dawnFactor = dawnFactor*dawnFactor;
-  dawnFactor *= dawnFactor;
-  dawnFactor *= mix(1.0,dawnFactor*dawnFactor,nightFactor);
-  s.zenith = mix(s.zenith,NL_DAWN_ZENITH_COL,dawnFactor);
-  s.horizon = mix(s.horizon,NL_DAWN_HORIZON_COL,dawnFactor);
-  s.horizonEdge = mix(s.horizonEdge,NL_DAWN_EDGE_COL,dawnFactor);
+  float dawnFactor = 1.0-env.dayFactor*env.dayFactor;
+  dawnFactor *= dawnFactor*dawnFactor;
+  dawnFactor *= mix(1.0, dawnFactor*dawnFactor, nightFactor);
+  s.zenith = mix(s.zenith, NL_DAWN_ZENITH_COL, dawnFactor);
+  s.horizon = mix(s.horizon, NL_DAWN_HORIZON_COL, dawnFactor);
+  s.horizonEdge = mix(s.horizonEdge, NL_DAWN_EDGE_COL, dawnFactor);
 
   float zh = dot(s.zenith, vec3_splat(0.33));
   float hh = dot(s.horizon, vec3_splat(0.33));
@@ -77,29 +76,6 @@ nl_skycolor nlSkyColors(nl_environment env) {
   return nlOverworldSkyColors(env);
 }
 
-float nlDawnStrength(nl_environment env) {
-  float dawn = 1.0-smoothstep(0.0,1.0,abs(env.dayFactor));
-  dawn *= dawn;
-  dawn *= mix(1.0,dawn,smoothstep(0.0,-0.20,env.dayFactor));
-  return dawn;
-}
-
-vec3 nlDawnAtmosphere(vec3 sky,nl_skycolor skyCol,nl_environment env,vec3 viewDir) {
-  float dawn = nlDawnStrength(env);
-  float horizon = 1.0-smoothstep(0.0,1.0,abs(viewDir.y));
-  float upper = smoothstep(0.12,0.78,viewDir.y);
-  float sunDot = max(dot(normalize(env.sunDir),normalize(viewDir)),0.0);
-  float sunWide = pow(sunDot,2.2);
-  float sunCore = pow(sunDot,8.0);
-  float haze = horizon*(0.5+0.62*sunWide)*dawn;
-  float glow = (1.0*sunWide+1.0*sunCore)*dawn;
-  vec3 horizonLight = mix(skyCol.horizonEdge,skyCol.horizon,0.5+0.5*upper);
-  vec3 sunLight = mix(horizonLight,skyCol.horizon,0.5);
-  sky += mix(sky,sunLight,haze*0.2);
-  sky += skyCol.horizon*glow*0.0;
-  return sky;
-}
-
 vec3 renderOverworldSky(nl_skycolor skyCol, nl_environment env, vec3 viewDir, bool isSkyPlane) {
   float avy = abs(viewDir.y);
   float mask = 0.5 + (0.5*viewDir.y/(0.4 + avy));
@@ -123,21 +99,18 @@ vec3 renderOverworldSky(nl_skycolor skyCol, nl_environment env, vec3 viewDir, bo
   gradient1 = mix(gradient1*gradient1, 1.0, mg8);
   gradient2 = mix(gradient2, 1.0, mg8);
 
-  float dawnFactor = 1.0-smoothstep(0.0,1.0,abs(env.dayFactor));
-  dawnFactor = dawnFactor*dawnFactor;
-  dawnFactor *= dawnFactor;
-  float df = mix(1.0,g2.x,dawnFactor*dawnFactor);
-  vec3 sky = mix(skyCol.horizon,skyCol.horizonEdge,gradient1*df*df);
-  sky = mix(skyCol.zenith,sky,gradient2*df);
-  sky = nlDawnAtmosphere(sky,skyCol,env,viewDir);
-  float sunDot = max(dot(normalize(env.sunDir),normalize(viewDir)),0.0);
-  float sunGlow = pow(sunDot,6.0);
-  float sunBloom = pow(sunDot,6.0);
-  float dawnGlow = dawnFactor;
-  dawnGlow *= 1.0-0.5*env.rainFactor;
-  vec3 dawnGlowCol = NL_DAWN_EDGE_COL;
-  sky += dawnGlowCol*(0.5*sunGlow+1.0*sunBloom)*dawnGlow;
+    float dawnFactor = 1.0-env.dayFactor*env.dayFactor;
+  float df = mix(1.0, g2.x, dawnFactor*dawnFactor);
 
+  float dawnSpread = 1.2;
+  float dawnEdge = 1.5;
+
+  float dawnGradient1 = mix(gradient1, vh2, dawnSpread*dawnFactor*dawnSpread);
+  float dawnGradient2 = mix(gradient2, vh2, dawnEdge*dawnFactor*dawnSpread);
+
+  vec3 sky = mix(skyCol.horizon, skyCol.horizonEdge, dawnGradient1*df*df);
+  sky = mix(skyCol.zenith, sky, dawnGradient2*df);
+  
   sky *= 0.5+0.5*gradient2;
   sky *= (1.0 + (2.0*mg8 + 7.0*mg8*mg8)*mask)*mix(1.0, mask, NL_SKY_VOID_DARKNESS);
 
@@ -145,7 +118,7 @@ vec3 renderOverworldSky(nl_skycolor skyCol, nl_environment env, vec3 viewDir, bo
     float source = max(0.0, (mg8-0.22)/0.78);
     source *= source;
     source *= source;
-    sky *= 1.0 + 18.0*source*(1.0-env.rainFactor);
+    sky *= 1.0 + 17.0*source*(1.0-env.rainFactor);
   }
 
   #ifdef NL_RAINBOW
