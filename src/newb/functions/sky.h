@@ -86,7 +86,7 @@ float nlDawnStrength(nl_environment env) {
 
 vec3 nlDawnAtmosphere(vec3 sky,nl_skycolor skyCol,nl_environment env,vec3 viewDir) {
   float dawn = nlDawnStrength(env);
-  float horizon = 1.0-smoothstep(0.0,0.0,abs(viewDir.y));
+  float horizon = 1.0-smoothstep(0.0,1.0,abs(viewDir.y));
   float upper = smoothstep(0.12,0.78,viewDir.y);
   float sunDot = max(dot(normalize(env.sunDir),normalize(viewDir)),0.0);
   float sunWide = pow(sunDot,2.2);
@@ -357,7 +357,7 @@ vec3 nlRenderGalaxy(vec3 vdir, vec3 fogColor, nl_environment env, float t) {
   //float gd = vdir.x + 0.1*vdir.y + 0.1*sin(10.0*vdir.z + 0.2*t);
   //float st = n1*n2*n3*n3*(1.0+70.0*gd*gd);
   //st = (1.0-st)/(1.0+400.0*st);
-  //vec3 stars = (0.8 + 0.2*sin(vec3(8.0,6.0,10.0)*(2.0*n1+0.8*n2) + vec3(0.0,0.4,0.82)))*st;
+  vec3 stars = vec3(0.0,0.0,0.0); // galaxy without stars
 
   // glow
   float gfmask = abs(vdir.x)-0.15*n1+0.04*n2+0.25*n0;
@@ -368,11 +368,11 @@ vec3 nlRenderGalaxy(vec3 vdir, vec3 fogColor, nl_environment env, float t) {
   gf *= 1.0-0.2*smoothstep(0.3, 0.4, gfmask);
   gf *= 1.0-0.1*smoothstep(0.2, 0.1, gfmask);
   vec3 gfcol = normalize(vec3(n0, cos(2.0*vdir.y), sin(vdir.x+n0)));
-  //stars += (0.4*gf + 0.012)*mix(vec3(0.5, 0.5, 0.5), gfcol*gfcol, NL_GALAXY_VIBRANCE);
+  stars += (0.4*gf + 0.012)*mix(vec3(0.5, 0.5, 0.5), gfcol*gfcol, NL_GALAXY_VIBRANCE);
 
-  //stars *= mix(1.0, NL_GALAXY_DAY_VISIBILITY, env.dayFactor);
+  stars *= mix(1.0, NL_GALAXY_DAY_VISIBILITY, env.dayFactor);
 
-  //return stars*(1.0-env.rainFactor);
+  return stars*(1.0-env.rainFactor);
 }
 
 
