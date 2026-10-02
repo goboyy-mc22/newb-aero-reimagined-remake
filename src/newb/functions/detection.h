@@ -15,8 +15,9 @@ struct nl_environment {
 };
 
 bool detectEnd(vec3 FOG_COLOR) {
-  // custom fog color set in biomes_client.json to help in detection
-  return FOG_COLOR.r==FOG_COLOR.b && (FOG_COLOR.r-FOG_COLOR.g>0.24 || (FOG_COLOR.g==0.0 && FOG_COLOR.r>0.1));
+  return FOG_COLOR.g < 0.08 &&
+         FOG_COLOR.b > 0.20 &&
+         FOG_COLOR.b > FOG_COLOR.r * 1.20;
 }
 
 bool detectNether(vec3 FOG_COLOR, vec2 FOG_CONTROL) {
