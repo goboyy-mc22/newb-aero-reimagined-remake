@@ -16,7 +16,8 @@ void main() {
 
     vec3 viewDir = normalize(v_posTime.xyz);
 
-    vec3 color = renderEndSky(getEndHorizonCol(), getEndZenithCol(), normalize(v_posTime.xyz), v_posTime.w);
+    vec3 color = renderEndSky(getEndHorizonCol(), getEndZenithCol(), viewDir, v_posTime.w);
+    color += endstreaks(getEndHorizonCol(), getEndZenithCol(), viewDir, v_posTime.w);
 
     #ifdef NL_BLACKHOLE
       vec4 bh = renderBlackhole(viewDir, v_posTime.w);
