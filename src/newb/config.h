@@ -12,15 +12,15 @@
 
 /* Lighting */
 #define NL_SUNLIGHT_INTENSITY   4.0 // 1.0 weak ~ 5.0 bright
-#define NL_TORCHLIGHT_INTENSITY 1.5  // 0.5 weak ~ 3.0 bright
-#define NL_SHADOW_INTENSITY     2.0 // 0.0 no shadow ~ 1.0 strong shadow
+#define NL_TORCHLIGHT_INTENSITY 1.2  // 0.5 weak ~ 3.0 bright
+#define NL_SHADOW_INTENSITY     1.0 // 0.0 no shadow ~ 1.0 strong shadow
 #define NL_MIN_LIGHTING_BOOST   0.9 // 1.0 minimal lighting boost for dark areas ~ 3.0 brighter dark areas
 #define NL_BLINKING_TORCH  // [toggle] flickering light
 //#define NL_CLOUD_SHADOW      // [toggle] cloud shadow (simple clouds only)
 
 /* Ambient light for nether/end */
 #define NL_NETHER_AMBIENT vec3(2.90,2.08,1.86)
-#define NL_END_AMBIENT    vec3(1.2,1.1,1.4)
+#define NL_END_AMBIENT    vec3(0.8,0.9,1.0)
 
 /* Sun/moon light color */
 #define NL_DAWN_SUNLIGHT_COL vec3(1.0,0.45,0.52)
@@ -160,7 +160,7 @@
 #define NL_SHOOTING_STAR_DELAY 64.0 // 0.0 no delay ~ 100.0 long time (100 secs)
 
 /* Galaxy */
-#define NL_GALAXY_STARS 0.5           // [toggle] 0.1 dim - 4.0 bright
+#define NL_GALAXY_STARS 0.35           // [toggle] 0.1 dim - 4.0 bright
 #define NL_GALAXY_VIBRANCE 1.0         // 0.0 white - 1.0 colorful
 #define NL_GALAXY_SPEED 0.02            // 0.01 slow motion - 0.2 fast motion
 #define NL_GALAXY_DAY_VISIBILITY 0.0    // 0.0 invisible - 1.0 visible
@@ -171,10 +171,10 @@
 /* Sun/Moon */
 #define NL_SUN_SIZE  1.2           // 0.3 tiny ~ 4.0 massive
 #define NL_MOON_SIZE 1.2           // 0.3 tiny ~ 4.0 massive
-#define NL_SUN_PATH_YAW    15.0 //
-#define NL_MOON_PATH_YAW   17.0 //
+#define NL_SUN_PATH_YAW    20.0 //
+#define NL_MOON_PATH_YAW   10.0 //
 #define NL_SUN_PATH_TILT   31.0 //
-#define NL_MOON_PATH_TILT -28.0 //
+#define NL_MOON_PATH_TILT  28.0 //
 #define NL_SUN_TILT        45.0 // 0.0 no tilt ~ 90.0 tilt of 90 degrees
 #define NL_MOON_TILT       45.0 // 0.0 no tilt ~ 90.0 tilt of 90 degrees
 
