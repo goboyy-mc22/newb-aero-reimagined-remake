@@ -20,6 +20,9 @@ void main() {
     return;
   #endif
 
+  vec4 diffuse = texture2D(s_MatTexture, v_texcoord0);
+  vec4 color = v_color0;
+
   nl_environment env = nlDetectEnvironment(TimeOfDay.x,FogColor.rgb,FogAndDistanceControl.xyz);
   
   vec3 N;
@@ -43,9 +46,6 @@ void main() {
       diffuse.rgb *= finalColor;
       diffuse.rgb *= 2.7;
   }
-
-  vec4 diffuse = texture2D(s_MatTexture, v_texcoord0);
-  vec4 color = v_color0;
 
   #ifdef ALPHA_TEST
     if (diffuse.a < 0.6) {
