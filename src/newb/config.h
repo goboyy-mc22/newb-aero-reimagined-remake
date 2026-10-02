@@ -57,8 +57,8 @@
 #define NL_NIGHT_HORIZON_COL vec3(0.042,0.096,0.20)
 #define NL_NIGHT_EDGE_COL    vec3(0.072,0.132,0.22)
 
-#define NL_RAIN_ZENITH_COL   vec3(0.20,0.27,0.36)
-#define NL_RAIN_HORIZON_COL  vec3(0.42,0.50,0.58)
+#define NL_RAIN_ZENITH_COL   vec3(0.25,0.25,0.25)*1.1
+#define NL_RAIN_HORIZON_COL  vec3(0.45,0.45,0.45)*1.1
 
 #define NL_END_ZENITH_COL    vec3(0.030,0.000,0.075)
 #define NL_END_HORIZON_COL   vec3(0.045,0.005,0.095)
