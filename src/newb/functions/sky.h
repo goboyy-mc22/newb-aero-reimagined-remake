@@ -175,43 +175,15 @@ vec4 renderBlackhole(vec3 viewdir,float t) {
     return vec4(col,hole);
 }
 
-vec3 renderEndSky(vec3 horizonCol,vec3 zenithCol,vec3 viewDir,float t) {
-  t *= 0.16;
+vec3 endstreaks(vec3 horizonCol,vec3 zenithCol,vec3 viewDir,float t) {
+  float skyTime = t*0.2;
 
   float a = atan2(viewDir.x,viewDir.z);
   float y = viewDir.y;
-  vec3 dir = normalize(viewDir);
 
-  vec3 starCell = floor(dir*1000.0);
-  vec3 rnd = hash33(starCell);
-
-  float starChance = step(0.700,rnd.x);
-
-  // Random star position
-  vec3 starPosRnd = hash33(starCell + vec3(1.0,1.0,1.0));
-  vec3 starPos = mix(vec3(0.8,0.8,0.8), vec3(1.0,1.0,1.0), starPosRnd);
-  float starDist = length(fract(dir*150.0)-starPos);
-
-  float starRadius = mix(0.150,0.150,rnd.y);
-  float starPoint = 1.0-smoothstep(starRadius,starRadius*1.0,starDist);
-
-  vec3 starColor = vec3(1.0,1.0,1.0);
-
-  if (rnd.x > 0.700) {
-      starColor = vec3(0.0,0.5,1.0);
-  }
-  if (rnd.x > 0.800) {
-      starColor = vec3(1.0,0.5,0.0);
-  }
-  if (rnd.x > 0.900) {
-      starColor = vec3(0.5,1.0,0.0);
-  }
-
-  float star = starPoint*starChance;
-
-  float n1 = 1.0+1.0*sin(14.0*a+t+0.0*viewDir.x*y);
-  float n2 = 1.0+0.5*sin(8.0*a+0.0*t+0.0*n1+0.5*sin(50.0*a-4.0*t));
-  float n3 = 1.0+1.0*sin(10.0*a-0.5*t+5.0*n2+10.0*viewDir.z*y);
+  float n1 = 1.0+1.0*sin(14.0*a+skyTime+0.0*viewDir.x*y);
+  float n2 = 1.0+0.5*sin(8.0*a+0.0*skyTime+0.0*n1+0.5*sin(50.0*a-4.0*skyTime));
+  float n3 = 1.0+1.0*sin(10.0*a-0.5*skyTime+5.0*n2+10.0*viewDir.z*y);
 
   float waves = 0.1*n2*n1+0.5*n1+0.1*n3;
   waves = smoothstep(-1.0,1.0,waves);
@@ -239,10 +211,40 @@ vec3 renderEndSky(vec3 horizonCol,vec3 zenithCol,vec3 viewDir,float t) {
   float light = smoothstep(0.0,1.0,streaks);
   sky += vec3(0.5,0.5,0.5)*light*0.2;
 
-  sky += 0.1*body*spectrum(sin(1.0*viewDir.x*viewDir.y+t));
-  sky += starColor*star*4.0;
+  sky += 0.1*body*spectrum(sin(1.0*viewDir.x*viewDir.y+skyTime));
 
   return sky;
+}
+
+vec3 renderEndSky(vec3 horizonCol,vec3 zenithCol,vec3 viewDir,float t) {
+  vec3 dir = normalize(viewDir);
+  float grad = 0.5+0.5*dir.y;
+  vec3 sky = mix(zenithCol,horizonCol,pow(1.0-grad,1.35));
+
+  vec3 starCell = floor(dir*185.0);
+    vec3 rnd = hash33(starCell);
+
+    float starChance = step(0.980,rnd.x);
+    float starDist = length(fract(dir*185.0)-0.5);
+    float starRadius = mix(0.105,0.18,rnd.y);
+    float starPoint = 1.0-smoothstep(starRadius,starRadius*1.45,starDist);
+
+    vec3 starColor = vec3(1.0,0.93,0.82);
+
+    if (rnd.x > 0.978) {
+        starColor = vec3(0.55,0.72,1.0);
+    }
+    if (rnd.x > 0.988) {
+        starColor = vec3(0.72,0.55,1.0);
+    }
+    if (rnd.x > 0.995) {
+        starColor = vec3(0.55,0.9,1.0);
+    }
+    
+    float star = starPoint*starChance;
+    sky += starColor*star*1.35;
+
+    return sky;
 }
 
 vec3 nlRenderSky(nl_skycolor skycol, nl_environment env, vec3 viewDir, float t, bool isSkyPlane) {
