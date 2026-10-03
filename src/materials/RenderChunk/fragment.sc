@@ -23,35 +23,35 @@ void main() {
   vec4 diffuse = texture2D(s_MatTexture, v_texcoord0);
   vec4 color = v_color0;
 
-  nl_environment env = nlDetectEnvironment(TimeOfDay.x,FogColor.rgb,FogAndDistanceControl.xyz);
-  
-  vec3 N;
-     N = normalize(cross(dFdx(v_position), dFdy(v_position)));
-
-  bool blockUnderWater = !env.end &&
-    v_lightmapUV.y < 0.9 &&
-    abs((2.0 * v_position.y - 15.0) / 16.0 - v_lightmapUV.y) < 0.00002;
-
-  if(env.underwater || blockUnderWater){
-      vec2 uv = v_position.xz * 0.15; 
-      uv += vec2(ViewPositionAndTime.w * 0.02, ViewPositionAndTime.w * 0.02); 
-      vec3 caustic = texture2D(s_caustic, uv).rgb;
-
-      float ndotl = max(N.y, 0.0); 
-      caustic *= ndotl * 0.5;
-
-      vec3 watercol = vec3(0.0, 0.3, 0.5);
-      vec3 finalColor = watercol + caustic;
-
-      diffuse.rgb *= finalColor;
-      diffuse.rgb *= 2.7;
-  }
-
   #ifdef ALPHA_TEST
     if (diffuse.a < 0.6) {
       discard;
     }
   #endif
+
+  nl_environment env = nlDetectEnvironment(TimeOfDay.x,FogColor.rgb,FogAndDistanceControl.xyz);
+  
+  vec3 N;
+     N = normalize(cross(dFdx(v_position), dFdy(v_position)));
+
+bool blockUnderWater = !env.end &&
+  v_lightmapUV.y < 0.9 &&
+  abs((2.0 * v_position.y - 15.0) / 16.0 - v_lightmapUV.y) < 0.00002;
+
+if(env.underwater || blockUnderWater){
+    vec2 uv = v_position.xz * 0.15; 
+    uv += vec2(ViewPositionAndTime.w * 0.02, ViewPositionAndTime.w * 0.02); 
+    vec3 caustic = texture2D(s_caustic, uv).rgb;
+
+    float ndotl = max(N.y, 0.0); 
+     caustic *= ndotl * 0.5;
+
+    vec3 watercol = vec3(0.0, 0.3, 0.5);
+    vec3 finalColor = watercol + caustic;
+
+    diffuse.rgb *= finalColor;
+    diffuse.rgb *= 2.7;
+}
 
   float sideshadow = smoothstep(0.64, 0.62, v_color1.g) * max(v_lightmapUV.x, v_lightmapUV.y);
   diffuse.rgb *= 1.0-0.25*sideshadow;
