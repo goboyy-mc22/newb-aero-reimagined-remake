@@ -3,7 +3,7 @@
 
 /* Color correction */
 #define NL_TONEMAP_TYPE 4              // 1:Exponential, 2:Reinhard, 3:Extended Reinhard, 4:ACES
-#define NL_GAMMA 1.15                  // 0.3 low ~ 2.0 high
+#define NL_GAMMA 1.1                  // 0.3 low ~ 2.0 high
 #define NL_EXPOSURE 1.2              // [toggle] 0.5 dark ~ 3.0 bright
 #define NL_SATURATION 1.2            // [toggle] 0.0 grayscale ~ 4.0 super saturated
 #define NL_TINT                      // [toggle] enable light/dark tone tinting
@@ -11,7 +11,7 @@
 #define NL_TINT_HIGH vec3(1.0,1.0,1.0) // color tint for light tone
 
 /* Lighting */
-#define NL_SUNLIGHT_INTENSITY   3.9  // 1.0 weak ~ 5.0 bright
+#define NL_SUNLIGHT_INTENSITY   3.5  // 1.0 weak ~ 5.0 bright
 #define NL_TORCHLIGHT_INTENSITY 1.2  // 0.5 weak ~ 3.0 bright
 #define NL_SHADOW_INTENSITY     1.0 // 0.0 no shadow ~ 1.0 strong shadow
 #define NL_MIN_LIGHTING_BOOST   0.9 // 1.0 minimal lighting boost for dark areas ~ 3.0 brighter dark areas
