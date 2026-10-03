@@ -20,7 +20,7 @@
 
 /* Ambient light for nether/end */
 #define NL_NETHER_AMBIENT vec3(2.90,2.08,1.86)
-#define NL_END_AMBIENT    vec3(0.8,0.9,1.0)
+#define NL_END_AMBIENT    vec3(1.0,0.95,1.18)
 
 /* Sun/moon light color */
 #define NL_DAWN_SUNLIGHT_COL vec3(1.0,0.45,0.52)
@@ -28,10 +28,10 @@
 #define NL_NIGHT_MOONLIGHT_COL vec3(0.025,0.045,0.10)
 
 /* Torch colors */
-#define NL_OVERWORLD_TORCH_COL  vec3(1.0,0.5,0.2)
-#define NL_UNDERWATER_TORCH_COL vec3(1.0,0.5,0.2)
-#define NL_NETHER_TORCH_COL     vec3(1.0,0.5,0.2)
-#define NL_END_TORCH_COL        vec3(1.0,0.5,0.2)
+#define NL_OVERWORLD_TORCH_COL  vec3(1.0,0.5,0.3)
+#define NL_UNDERWATER_TORCH_COL vec3(1.0,0.5,0.3)
+#define NL_NETHER_TORCH_COL     vec3(1.0,0.5,0.3)
+#define NL_END_TORCH_COL        vec3(1.0,0.5,0.3)
 
 /* Fog */
 #define NL_FOG 1.0                // [toggle] 0.1 subtle ~ 1.0 blend with sky completely
@@ -170,7 +170,7 @@
 
 /* Sun/Moon */
 #define NL_SUN_SIZE  1.2           // 0.3 tiny ~ 4.0 massive
-#define NL_MOON_SIZE 1.2           // 0.3 tiny ~ 4.0 massive
+#define NL_MOON_SIZE 1.0           // 0.3 tiny ~ 4.0 massive
 #define NL_SUN_PATH_YAW    20.0 //
 #define NL_MOON_PATH_YAW   10.0 //
 #define NL_SUN_PATH_TILT   31.0 //
@@ -179,7 +179,7 @@
 #define NL_MOON_TILT       45.0 // 0.0 no tilt ~ 90.0 tilt of 90 degrees
 
 /* Fake godrays during sunrise/sunset */
-#define NL_GODRAY 1.0 // [toggle] 0.1 subtle ~ 0.8 strong
+#define NL_GODRAY 1.2 // [toggle] 0.1 subtle ~ 0.8 strong
 
 /* Sky reflection */
 //#define NL_GROUND_REFL 0.4       // [toggle] 0.2 slightly reflective ~ 1.0 fully reflect sky
