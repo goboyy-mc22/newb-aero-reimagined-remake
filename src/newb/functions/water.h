@@ -23,11 +23,11 @@ vec4 nlWater(
   // Lightweight layered directional waves
   vec2 wavePos = gPos.xz;
   float waveTime = NL_WATER_WAVE_SPEED*t;
-  float waveA = sin(wavePos.x*0.75 + wavePos.y*0.35 + waveTime);
-  float waveB = sin(wavePos.y*0.62 - wavePos.x*0.28 - waveTime*0.82 + 1.7);
-  float waveC = sin((wavePos.x+wavePos.y)*0.42 + waveTime*0.55 + 3.1);
-  float waveD = sin((wavePos.y-wavePos.x)*0.50 - waveTime*0.68 + 0.8);
-  vec2 bump = vec2((waveA*0.50 + waveB*0.30 + waveC*0.20)*0.5,(waveB*0.45 + waveD*0.35 + waveC*0.20)*0.5);
+  float waveA = sin(wavePos.x*0.75 + wavePos.y*0.25 + waveTime);
+  float waveB = sin(wavePos.y*0.62 - wavePos.x*0.38 - waveTime*0.75 + 1.5);
+  float waveC = sin((wavePos.x+wavePos.y)*0.36 + waveTime*0.5 + 2.8);
+  float waveD = sin((wavePos.y-wavePos.x)*0.50 - waveTime*0.68 + 1.0);
+  vec2 bump = vec2((waveA*0.40 + waveB*0.30 + waveC*0.20)*0.5,(waveB*0.35 + waveD*0.25 + waveC*0.15)*0.5);
 
   vec3 nrm;
   if (fractCposY > 0.0) { // top plane
