@@ -228,7 +228,7 @@
   #define NL_LANTERN_WAVE 0.08
 
   #undef NL_WAVE_RANGE
-  #undef NL_WAVE_RANGE 0.08
+  #define NL_WAVE_RANGE 0.08
 
   #undef NL_WATER_BUMP
   #define NL_WATER_BUMP 0.05
@@ -249,7 +249,7 @@
   #define NL_SHOOTING_STAR_DELAY 100.0
 
   #undef NL_GODRAY
-  #undef NL_GODRAY 0.8
+  #define NL_GODRAY 0.8
 
   #undef NL_GROUND_RAIN_WETNESS
   #define NL_GROUND_RAIN_WETNESS 0.75
