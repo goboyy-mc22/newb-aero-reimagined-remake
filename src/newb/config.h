@@ -48,6 +48,8 @@
 #define NL_DAWN_ZENITH_COL   vec3(0.42,0.56,1.08)
 #define NL_DAWN_HORIZON_COL  vec3(3.15,0.96,0.44)
 #define NL_DAWN_EDGE_COL     vec3(2.45,1.18,1.06)
+#define NL_DAWN_SPREAD 17.0
+#define NL_POW_DAWN_EDGE 14.0
 
 #define NL_DAY_ZENITH_COL    vec3(0.42,1.04,2.72)
 #define NL_DAY_HORIZON_COL   vec3(1.10,2.18,2.62)
@@ -222,10 +224,10 @@
   #define NL_GLOW_LEAK 0.25
 
   #undef NL_PLANTS_WAVE
-  #define NL_PLANTS_WAVE 0.025
+  #define NL_PLANTS_WAVE 0.03
 
   #undef NL_LANTERN_WAVE
-  #define NL_LANTERN_WAVE 0.08
+  #define NL_LANTERN_WAVE 0.1
 
   #undef NL_WAVE_RANGE
   #define NL_WAVE_RANGE 0.08
