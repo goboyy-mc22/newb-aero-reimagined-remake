@@ -20,15 +20,8 @@ vec4 nlWater(
   float fractCposY, float camDist, highp float t
 ) {
 
-  // Lightweight layered directional waves
-  vec2 wavePos = gPos.xz;
-  float waveTime = NL_WATER_WAVE_SPEED*t;
-  float waveA = sin(wavePos.x*0.75 + wavePos.y*0.25 + waveTime);
-  float waveB = sin(wavePos.y*0.62 - wavePos.x*0.38 - waveTime*0.75 + 1.5);
-  float waveC = sin((wavePos.x+wavePos.y)*0.36 + waveTime*0.5 + 2.8);
-  float waveD = sin((wavePos.y-wavePos.x)*0.50 - waveTime*0.68 + 1.0);
-  vec2 bump = vec2((waveA*0.40 + waveB*0.30 + waveC*0.20)*0.5,(waveB*0.35 + waveD*0.25 + waveC*0.15)*0.5);
-
+  vec2 bump = vec2_splat(movingNoise2D(gPos.xz + gPos.yy, NL_WATER_WAVE_SPEED*t, 0.6));
+  
   vec3 nrm;
   if (fractCposY > 0.0) { // top plane
     nrm.xz = bump*NL_WATER_BUMP;
