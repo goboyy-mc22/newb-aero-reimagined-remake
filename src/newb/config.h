@@ -114,10 +114,10 @@
 #define NL_CLOUD0_MULTILAYER         // [toggle] extra cloud layer
 
 /* Soft cloud settings */
-#define NL_CLOUD1_SCALE vec2(0.014, 0.02) // 0.003 large ~ 0.2 tiny
-#define NL_CLOUD1_DEPTH 5.0               // 0.0 no bump ~ 10.0 large bumps
-#define NL_CLOUD1_SPEED 0.03               // 0.0 static ~ 0.4 fast moving
-#define NL_CLOUD1_DENSITY 0.8             // 0.1 less clouds ~ 0.8 more clouds
+#define NL_CLOUD1_SCALE vec2(0.016, 0.022) // 0.003 large ~ 0.2 tiny
+#define NL_CLOUD1_DEPTH 1.3                // 0.0 no bump ~ 10.0 large bumps
+#define NL_CLOUD1_SPEED 0.04               // 0.0 static ~ 0.4 fast moving
+#define NL_CLOUD1_DENSITY 0.54             // 0.1 less clouds ~ 0.8 more clouds
 #define NL_CLOUD1_OPACITY 0.9              // 0.0 invisible ~ 1.0 opaque
 
 /* Rounded cloud settings */
