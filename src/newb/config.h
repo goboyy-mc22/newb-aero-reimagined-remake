@@ -73,13 +73,13 @@
 /* Rainbow */
 #define NL_RAINBOW           // [toggle] enable rainbow in sky
 #define NL_RAINBOW_CLEAR 0.0 // 0.3 subtle ~ 1.0 bright during clear weather
-#define NL_RAINBOW_RAIN  0.5 // 0.3 subtle ~ 1.0 bright during rain weather
+#define NL_RAINBOW_RAIN  1.0 // 0.3 subtle ~ 1.0 bright during rain weather
 
 /* Ore glow intensity */
 #define NL_GLOW_TEX 2.3           // 0.4 weak ~ 8.0 bright
-#define NL_GLOW_SHIMMER 0.8       // [toggle] 0.1 subtle ~ 1.0 100% shimmer
+#define NL_GLOW_SHIMMER 0.8     // [toggle] 0.1 subtle ~ 1.0 100% shimmer
 #define NL_GLOW_SHIMMER_SPEED 0.9 // 0.5 slow - 2.0 fast
-#define NL_GLOW_LEAK 0.5        // [toggle] 0.08 subtle ~ 1.0 100% brightness of NL_GLOW_TEX
+#define NL_GLOW_LEAK 0.5      // [toggle] 0.08 subtle ~ 1.0 100% brightness of NL_GLOW_TEX
 
 /* Waving */
 #define NL_PLANTS_WAVE 0.05    // [toggle] 0.02 gentle ~ 0.4 violent
@@ -114,10 +114,10 @@
 #define NL_CLOUD0_MULTILAYER         // [toggle] extra cloud layer
 
 /* Soft cloud settings */
-#define NL_CLOUD1_SCALE vec2(0.016, 0.022) // 0.003 large ~ 0.2 tiny
-#define NL_CLOUD1_DEPTH 1.3                // 0.0 no bump ~ 10.0 large bumps
-#define NL_CLOUD1_SPEED 0.04               // 0.0 static ~ 0.4 fast moving
-#define NL_CLOUD1_DENSITY 0.54             // 0.1 less clouds ~ 0.8 more clouds
+#define NL_CLOUD1_SCALE vec2(0.014, 0.02) // 0.003 large ~ 0.2 tiny
+#define NL_CLOUD1_DEPTH 5.0               // 0.0 no bump ~ 10.0 large bumps
+#define NL_CLOUD1_SPEED 0.03               // 0.0 static ~ 0.4 fast moving
+#define NL_CLOUD1_DENSITY 0.8             // 0.1 less clouds ~ 0.8 more clouds
 #define NL_CLOUD1_OPACITY 0.9              // 0.0 invisible ~ 1.0 opaque
 
 /* Rounded cloud settings */
@@ -199,5 +199,66 @@
 //#define NL_LAVA_NOISE            // [toggle] darken lava in certain regions
 #define NL_LAVA_NOISE_BUMP 0.2 // [toggle] 0.1 subtle ~ 0.8 massive waves
 #define NL_LAVA_NOISE_SPEED 0.2  // 0.0 still ~ 0.8 fast
+
+#ifdef LOW
+  #undef NL_BLINKING_TORCH
+
+  #undef NL_MIST_DENSITY
+  #define NL_MIST_DENSITY 0.10
+
+  #undef NL_RAIN_MIST_OPACITY 
+  #define NL_RAIN_MIST_OPACITY 0.10
+
+  #undef NL_CLOUDY_FOG
+  #define NL_CLOUDY_FOG 0.2
+
+  #undef NL_RAINBOW_RAIN
+  #define NL_RAINBOW_RAIN 0.5
+
+  #undef NL_GLOW_SHIMMER
+  #define NL_GLOW_SHIMMER 0.4
+
+  #undef NL_GLOW_LEAK
+  #define NL_GLOW_LEAK 0.25
+
+  #undef NL_PLANTS_WAVE
+  #define NL_PLANTS_WAVE 0.025
+
+  #undef NL_LANTERN_WAVE
+  #define NL_LANTERN_WAVE 0.08
+
+  #undef NL_WAVE_RANGE
+  #undef NL_WAVE_RANGE 0.08
+
+  #undef NL_WATER_BUMP
+  #define NL_WATER_BUMP 0.05
+
+  #undef NL_UNDERWATER_WAVE 
+  #define NL_UNDERWATER_WAVE 0.05
+
+  #undef NL_UNDERWATER_STREAKS
+  #define NL_UNDERWATER_STREAKS 0.5
+
+  #undef NL_CLOUD_TYPE
+  #define NL_CLOUD_TYPE 1
+
+  #undef NL_SHOOTING_STAR_PERIOD
+  #define NL_SHOOTING_STAR_PERIOD 3.0
+
+  #undef NL_SHOOTING_STAR_DELAY
+  #define NL_SHOOTING_STAR_DELAY 100.0
+
+  #undef NL_GODRAY
+  #undef NL_GODRAY 0.8
+
+  #undef NL_GROUND_RAIN_WETNESS
+  #define NL_GROUND_RAIN_WETNESS 0.75
+
+  #undef NL_GROUND_RAIN_PUDDLES
+  #define NL_GROUND_RAIN_PUDDLES 0.6
+
+  #undef NL_LAVA_NOISE_BUMP
+  #define NL_LAVA_NOISE_BUMP 0.1
+#endif
 
 #endif
